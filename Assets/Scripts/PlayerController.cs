@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -25,17 +26,9 @@ public class PlayerController : MonoBehaviour
     {
         onGround = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance);
 
-        float horizontalAxis = Input.GetAxis("Horizontal");
-        float verticalAxis = Input.GetAxis("Vertical");
-        movementInput = new Vector2(horizontalAxis, verticalAxis);
-
-        if (Input.GetButtonDown("Jump") && onGround)
-        {
-            rb.AddForce(Vector2.up * jumpForce, ForceMode.Impulse);
-            anim.SetTrigger("jump");
-        }
-
         anim.SetFloat("speed", movementVector.magnitude);
+
+        // Fix "Look rotation viewing vector is zero" warning
         if (movementVector != Vector3.zero)
         {
             anim.transform.forward = movementVector;
@@ -46,5 +39,19 @@ public class PlayerController : MonoBehaviour
     {
         movementVector = new Vector3(movementInput.x, 0, movementInput.y).normalized * speed;
         rb.AddForce(movementVector);
+    }
+
+    public void OnJump()
+    {
+        if (onGround)
+        {
+            rb.AddForce(Vector2.up * jumpForce, ForceMode.Impulse);
+            anim.SetTrigger("jump");
+        }
+    }
+   
+    public void OnMovement(InputValue value)
+    {
+        movementInput = value.Get<Vector2>();
     }
 }
