@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float jumpForce = 5;
     [SerializeField] float groundCheckDistance = 1;
     [SerializeField] Animator anim;
+    [SerializeField] PlayerStats playerStats;
 
     Rigidbody rb;
     Transform cam;

@@ -457,6 +457,7 @@ MonoBehaviour:
   jumpForce: 5
   groundCheckDistance: 1
   anim: {fileID: 974110834}
+  playerData: {fileID: 11400000, guid: dc785e0abe691ac46906e7e017391a4f, type: 2}
 --- !u!95 &974110834 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: eae2ba7284bf78c45afcb361fb2333bc, type: 3}
