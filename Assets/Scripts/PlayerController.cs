@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(movementVector);
     }
 
-    public void OnJump()
+    void OnJump()
     {
         if (onGround)
         {
@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
         }
     }
    
-    public void OnMovement(InputValue value)
+    void OnMovement(InputValue value)
     {
         movementInput = value.Get<Vector2>();
     }
