@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Animator anim;
 
     Rigidbody rb;
+    Transform cam;
     Vector2 movementInput;
     Vector3 movementVector;
     bool onGround = false;
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        cam = Camera.main.transform;
     }
 
     // Update is called once per frame
@@ -38,7 +40,8 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        movementVector = new Vector3(movementInput.x, 0, movementInput.y).normalized * speed;
+        movementVector = ((movementInput.y * cam.forward) + (movementInput.x * cam.right)).normalized * speed;
+        movementVector.y = 0;
         rb.AddForce(movementVector);
     }
 
