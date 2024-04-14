@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] float speed = 50;
+    [SerializeField] float speed = 100;
     [SerializeField] float jumpForce = 5;
     [SerializeField] float groundCheckDistance = 1;
     [SerializeField] Animator anim;
@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     Vector2 movementInput;
     Vector3 movementVector;
     bool onGround = false;
+    bool sprintEnabled = false;
 
     // Start is called before the first frame update
     void Start()
@@ -53,5 +54,11 @@ public class PlayerController : MonoBehaviour
     void OnMovement(InputValue value)
     {
         movementInput = value.Get<Vector2>();
+    }
+
+    void OnSprint()
+    {
+        speed = sprintEnabled ? 100 : 400;
+        sprintEnabled = !sprintEnabled;
     }
 }
