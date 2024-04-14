@@ -5,10 +5,12 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     Rigidbody rb;
-    [SerializeField] float speed = 5;
+    [SerializeField] float speed = 50;
     [SerializeField] float jumpForce = 10;
+    [SerializeField] Animator anim;
 
     Vector2 movementInput;
+    Vector3 movementVector;
 
     // Start is called before the first frame update
     void Start()
@@ -26,11 +28,19 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode.Impulse);
+            anim.SetTrigger("jump");
+        }
+
+        anim.SetFloat("speed", movementVector.magnitude);
+        if (movementVector != Vector3.zero)
+        {
+            anim.transform.forward = movementVector;
         }
     }
 
     void FixedUpdate()
     {
-        rb.AddForce(new Vector3(movementInput.x, 0, movementInput.y) * speed);
+        movementVector = new Vector3(movementInput.x, 0, movementInput.y).normalized * speed;
+        rb.AddForce(movementVector);
     }
 }
