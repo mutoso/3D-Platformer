@@ -18,6 +18,32 @@ public class Player : MonoBehaviour
     bool onGround = false;
     bool sprintEnabled = false;
 
+    public int Health
+    {
+        get
+        {
+            return playerStats.health;
+        }
+        
+        set
+        { 
+            playerStats.health = value;
+        }
+    }
+
+    public int Score
+    {
+        get
+        {
+            return playerStats.score;
+        }
+
+        set
+        {
+            playerStats.score = value;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
