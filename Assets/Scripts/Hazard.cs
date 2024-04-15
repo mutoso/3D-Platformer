@@ -18,7 +18,7 @@ public class Hazard : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        other.gameObject.GetComponent<Player>().Health -= 5;
+        other.gameObject.GetComponent<Player>().Health -= 25;
         Destroy(gameObject);
     }
 }

@@ -16,7 +16,7 @@ public class EndConditionTracker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerStats.score >= 5)
+        if (playerStats.score >= 3)
         {
             SceneManager.LoadScene("Victory");
         }
